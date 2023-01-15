@@ -1,0 +1,81 @@
+*, *:before, *:after
+    box-sizing: border-box
+
+html, body, div, span, object, iframe, figure, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, code, em, img, small, strike, strong, sub, sup, tt, b, u, i, ol, ul, li, fieldset, form, label, table, caption, tbody, tfoot, thead, tr, th, td, main, canvas, embed, footer, header, nav, section, video
+    margin: 0
+    padding: 0
+    border: 0
+    font-size: 100%
+    font: inherit
+    vertical-align: baseline
+    text-rendering: optimizeLegibility
+    -webkit-font-smoothing: antialiased
+    text-size-adjust: none
+    font-family: 'Heebo', sans-serif
+
+footer, header, nav, section, main
+    display: block
+
+body
+    line-height: 1
+
+ol, ul
+    list-style: none
+
+blockquote, q
+    quotes: none
+
+blockquote:before, blockquote:after, q:before, q:after
+    content: ''
+    content: none
+
+table
+    border-collapse: collapse
+    border-spacing: 0
+
+input
+    -webkit-appearance: none
+    border-radius: 0
+
+.board
+    padding: 20px
+
+    &__column
+        display: inline-block
+        float: left
+        width: 300px
+        padding: 10px
+        background-color: #E9ECEF
+        margin: 0px 10px
+        margin-bottom: 10px
+
+        &__header
+            display: flex
+            justify-content: space-between
+            align-items: center
+            padding: 6px 0px
+
+    &__card
+        cursor: pointer
+        flex-basis: 20%
+        padding: 1rem
+        margin-bottom: 8px
+        background-color: #FFF
+        box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)
+
+        &__header
+            font-size: 1.2rem
+            font-weight: bold
+            padding-bottom: 0.5rem
+
+        &__content
+            padding-top: 0.5rem
+
+.details-modal
+    padding: 10px
+
+.btn
+    &__dump-db
+        position: fixed
+        bottom: 30px
+        right: 30px
