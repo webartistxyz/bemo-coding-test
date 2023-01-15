@@ -20,7 +20,7 @@ Route::get('/dump-db', function (Request $request) {
         ->setUserName(config('database.connections.mysql.username'))
         ->setPassword(config('database.connections.mysql.password'))
         ->dumpToFile('dump.sql');
-    return response()->download(asset('dump.sql'));
+    return response()->download('dump.sql');
 });
 
 Route::get('/', function () {
