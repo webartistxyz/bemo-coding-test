@@ -85,6 +85,7 @@ class BoardColumnController extends Controller
      */
     public function destroy(BoardColumn $boardColumn)
     {
+        $boardColumn->cards()->delete();
         $boardColumn->delete();
 
         return response()->noContent();
