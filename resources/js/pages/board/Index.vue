@@ -43,13 +43,9 @@
 
     <modal name="details-modal" @closed="onModalClose">
       <div class="details-modal" v-if="selectedCard">
-        <div>
-          <h4
-            contenteditable
-            @blur="(e) => (selectedCard.title = e.target.innerText)"
-          >
+        <div class="details-modal__title"
+             contenteditable @blur="(e) => (selectedCard.title = e.target.innerText)">
             {{ selectedCard.title }}
-          </h4>
         </div>
         <div
           class="details-modal__description"
@@ -86,7 +82,13 @@ export default {
   },
   methods: {
     async onColumnDelete(columnId) {
-      await axios.delete(`/api/board-columns/${columnId}`);
+      let res = await axios.delete(`/api/board-columns/${columnId}`);
+      if (res){
+        Toast.fire({
+            icon: 'success',
+            title: "Deleted successfully",
+        })
+      }
       this.loadBoard();
     },
     async loadBoard() {
@@ -94,13 +96,18 @@ export default {
       this.board = data;
     },
     async createColumn() {
-      await axios.post(`/api/board-columns`, {
+      let res = await axios.post(`/api/board-columns`, {
         board_id: this.boardId,
         name: "New Board",
       });
+      if (res){
+          Toast.fire({
+              icon: 'success',
+              title: "Added new column successfully",
+          })
+      }
       this.loadBoard();
     },
-    onTitleChange() {},
     openCardModal(card) {
       this.selectedCard = card;
       this.$modal.show("details-modal");
@@ -109,12 +116,17 @@ export default {
       this.$modal.hide("details-modal");
     },
     async addCard(boardId, columnId) {
-      await axios.post(`/api/cards`, {
+      let res = await axios.post(`/api/cards`, {
         board_id: boardId,
         board_column_id: columnId,
         title: "New card",
       });
-
+      if (res){
+        Toast.fire({
+            icon: 'success',
+            title: "Added new card successfully",
+        })
+      }
       this.loadBoard();
     },
     addColumn() {

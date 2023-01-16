@@ -12,12 +12,28 @@ window.axios = axios;
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
-/**
- * Echo exposes an expressive API for subscribing to channels and listening
- * for events that are broadcast by Laravel. Echo and event broadcasting
- * allows your team to easily build robust real-time web applications.
- */
 
+import Swal from 'sweetalert2/dist/sweetalert2.js'
+import 'sweetalert2/dist/sweetalert2.min.css';
+window.Swal = Swal;
+window.Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: true,
+    timer: 3000,
+    timerProgressBar: true,
+})
+window.deleteConfirmation = () => {
+    return Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    })
+}
 // import Echo from 'laravel-echo';
 
 // import Pusher from 'pusher-js';

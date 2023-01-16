@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
             ->has(
                 BoardColumn::factory()
                     ->has(Card::factory()->count(random_int(2, 4)))
-                    ->count(random_int(2, 8)),
+                    ->count(3),
                 'columns'
             )
             ->create();

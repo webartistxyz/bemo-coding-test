@@ -37,7 +37,8 @@ class BoardColumnController extends Controller
     {
         $request->validate(['board_id' => 'required', 'name' => 'required|string']);
 
-        $column = BoardColumn::create(array_merge($request->only(['name', 'board_id']), ['position' => 3]));
+        $latestColumn = BoardColumn::orderBy('id', 'desc')->first();
+        $column = BoardColumn::create(array_merge($request->only(['name', 'board_id']), ['position' => optional($latestColumn)->position+1]));
 
         return $column;
     }
