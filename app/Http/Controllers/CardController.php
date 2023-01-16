@@ -121,6 +121,7 @@ class CardController extends Controller
      */
     public function destroy(Card $card)
     {
-        //
+        $card->delete();
+        return response()->noContent();
     }
 }

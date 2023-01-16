@@ -19,11 +19,11 @@
           class="board__card"
           v-for="card in column.cards"
           :key="card.id"
-          @click="openCardModal(card)"
         >
-          <div class="board__header">
+          <div class="board__card__header" @click="openCardModal(card)">
             {{ card["title"] }}
           </div>
+          <span class="board__card__delete--icon" @click="onCardDelete(card.id)">X</span>
         </div>
         <button
           class="board__add-card-button"
@@ -43,6 +43,11 @@
 
     <modal name="details-modal" @closed="onModalClose">
       <div class="details-modal" v-if="selectedCard">
+        <div slot="top-right">
+          <span @click="closeCardModal">
+              ❌
+          </span>
+        </div>
         <div class="details-modal__title"
              contenteditable @blur="(e) => (selectedCard.title = e.target.innerText)">
             {{ selectedCard.title }}
@@ -88,6 +93,16 @@ export default {
             icon: 'success',
             title: "Deleted successfully",
         })
+      }
+      this.loadBoard();
+    },
+    async onCardDelete(cardId) {
+      let res = await axios.delete(`/api/cards/${cardId}`);
+      if (res){
+          Toast.fire({
+              icon: 'success',
+              title: "Deleted successfully",
+          })
       }
       this.loadBoard();
     },
